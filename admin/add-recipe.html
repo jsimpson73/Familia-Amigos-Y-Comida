@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe | Admin | Familia, Amigos Y Comida</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .admin-nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+        
+        .admin-nav .nav-list a {
+            color: white;
+        }
+        
+        .image-preview {
+            max-width: 300px;
+            max-height: 200px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .tag-input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tag-remove {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        
+        .rich-editor-toolbar {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .toolbar-btn {
+            padding: 5px 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .toolbar-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .rich-editor-content {
+            border: 1px solid #ddd;
+            min-height: 200px;
+            padding: 10px;
+            border-radius: 0 0 5px 5px;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Familia, Amigos Y Comida</h1>
+            <p class="site-subtitle">Admin Dashboard</p>
+        </div>
+    </header>
+    
+    <nav class="admin-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="recipes.html">Manage Recipes</a></li>
+                <li><a href="users.html">Manage Users</a></li>
+                <li><a href="categories.html">Manage Categories</a></li>
+                <li><a href="submissions.html">Recipe Submissions</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+                <li><a href="../index.html">View Site</a></li>
+                <li><a href="../login.html" id="logout-link">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <div class="admin-header">
+                <h2 class="admin-title">Add New Recipe</h2>
+                <div class="admin-actions">
+                    <a href="recipes.html" class="form-button">Back to Recipes</a>
+                </div>
+            </div>
+            
+            <div class="admin-panel">
+                <form id="add-recipe-form" class="recipe-form">
+                    <div class="form-group">
+                        <label for="recipe-title" class="form-label">Recipe Title</label>
+                        <input type="text" id="recipe-title" name="title" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-author" class="form-label">Author</label>
+                        <input type="text" id="recipe-author" name="author" class="form-input" value="John Simpson" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-intro" class="form-label">Introduction</label>
+                        <div class="rich-editor-toolbar">
+                            <button type="button" class="toolbar-btn" data-command="bold">Bold</button>
+                            <button type="button" class="toolbar-btn" data-command="italic">Italic</button>
+                            <button type="button" class="toolbar-btn" data-command="underline">Underline</button>
+                        </div>
+                        <textarea id="recipe-intro" name="introduction" class="form-textarea rich-editor-content" placeholder="Share the story behind this recipe or what makes it special..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-image" class="form-label">Recipe Image</label>
+                        <input type="file" id="recipe-image" name="image" accept="image/*" class="form-input">
+                        <small>Please upload a high-quality image of your prepared dish.</small>
+                        <img id="image-preview" class="image-preview" src="#" alt="Recipe preview">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prep-time" class="form-label">Preparation Time (minutes)</label>
+                        <input type="number" id="prep-time" name="prep_time" class="form-input" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cook-time" class="form-label">Cooking Time (minutes)</label>
+                        <input type="number" id="cook-time" name="cook_time" class="form-input" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="servings" class="form-label">Servings</label>
+                        <input type="number" id="servings" name="servings" class="form-input" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Ingredients</label>
+                        <div id="ingredients-container">
+                            <div class="ingredient-row">
+                                <input type="text" name="ingredients[]" class="form-input" placeholder="e.g., 2 cups flour" required>
+                                <button type="button" class="remove-btn">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-ingredient" class="secondary-button">Add Ingredient</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Instructions</label>
+                        <div id="instructions-container">
+                            <div class="instruction-row">
+                                <textarea name="instructions[]" class="form-textarea" placeholder="Describe this step..." required></textarea>
+                                <button type="button" class="remove-btn">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-instruction" class="secondary-button">Add Step</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Categories</label>
+                        <div class="categories-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="main-dish"> Main Dish
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="side-dish"> Side Dish
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="dessert"> Dessert
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="breakfast"> Breakfast
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="lunch"> Lunch
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="dinner"> Dinner
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="appetizer"> Appetizer
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="snack"> Snack
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="drink"> Drink
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="family-favorite"> Family Favorite
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="holiday"> Holiday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="quick-easy"> Quick & Easy
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="vegetarian"> Vegetarian
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="vegan"> Vegan
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="gluten-free"> Gluten-Free
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-notes" class="form-label">Additional Notes (Optional)</label>
+                        <textarea id="recipe-notes" name="notes" class="form-textarea" placeholder="Any tips, variations, or additional information..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-status" class="form-label">Status</label>
+                        <select id="recipe-status" name="status" class="form-select" required>
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="featured-recipe" class="checkbox-label">
+                            <input type="checkbox" id="featured-recipe" name="featured"> 
+                            Feature this recipe on homepage
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="form-button">Save Recipe</button>
+                        <button type="button" class="secondary-button" id="preview-btn">Preview</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <p class="copyright">&copy; 2025 Familia, Amigos Y Comida by John Simpson. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        // Image preview functionality
+        document.getElementById('recipe-image').addEventListener('change', function(e) {
+            const preview = document.getElementById('image-preview');
+            const file = e.target.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Add ingredient row
+        document.getElementById('add-ingredient').addEventListener('click', function() {
+            const container = document.getElementById('ingredients-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'ingredient-row';
+            newRow.innerHTML = `
+                <input type="text" name="ingredients[]" class="form-input" placeholder="e.g., 2 cups flour" required>
+                <button type="button" class="remove-btn">Remove</button>
+            `;
+            container.appendChild(newRow);
+            
+            // Add event listener to the new remove button
+            newRow.querySelector('.remove-btn').addEventListener('click', function() {
+                container.removeChild(newRow);
+            });
+        });
+        
+        // Add instruction row
+        document.getElementById('add-instruction').addEventListener('click', function() {
+            const container = document.getElementById('instructions-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'instruction-row';
+            newRow.innerHTML = `
+                <textarea name="instructions[]" class="form-textarea" placeholder="Describe this step..." required></textarea>
+                <button type="button" class="remove-btn">Remove</button>
+            `;
+            container.appendChild(newRow);
+            
+            // Add event listener to the new remove button
+            newRow.querySelector('.remove-btn').addEventListener('click', function() {
+                container.removeChild(newRow);
+            });
+        });
+        
+        // Add event listeners to initial remove buttons
+        document.querySelectorAll('.remove-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.parentElement;
+                const container = row.parentElement;
+                if (container.children.length > 1) {
+                    container.removeChild(row);
+                }
+            });
+        });
+        
+        // Rich text editor functionality
+        document.querySelectorAll('.toolbar-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const command = this.dataset.command;
+                document.execCommand(command, false, null);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="John Simpson">
+    <title>Categories | Familia, Amigos Y Comida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .categories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .category-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .category-title {
+            font-family: var(--header-font);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .category-count {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .category-description {
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+        
+        .category-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+        
+        .category-link:hover {
+            text-decoration: underline;
+        }
+        
+        .active-category {
+            margin-bottom: 30px;
+        }
+        
+        .active-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .back-to-categories {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-to-categories:hover {
+            text-decoration: underline;
+        }
+        
+        .filter-sort {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        .filter-dropdown, .sort-dropdown {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Familia, Amigos Y Comida</h1>
+            <p class="site-subtitle">Recipes from the heart, shared with love</p>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                <li><a href="favorites.html">My Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="register.html" id="register-link">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <h2 class="page-title">Recipe Categories</h2>
+            
+            <!-- This section shows when a specific category is selected -->
+            <div class="active-category" id="active-category" style="display: none;">
+                <div class="active-category-header">
+                    <h2 class="active-category-title">Main Dishes</h2>
+                    <a href="categories.html" class="back-to-categories">← Back to All Categories</a>
+                </div>
+                
+                <div class="filter-sort">
+                    <div class="filter">
+                        <label for="filter-dropdown">Filter by:</label>
+                        <select id="filter-dropdown" class="filter-dropdown">
+                            <option value="all">All</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="quick">Quick & Easy</option>
+                            <option value="family">Family Favorites</option>
+                        </select>
+                    </div>
+                    
+                    <div class="sort">
+                        <label for="sort-dropdown">Sort by:</label>
+                        <select id="sort-dropdown" class="sort-dropdown">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="a-z">A-Z</option>
+                            <option value="z-a">Z-A</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="recipe-grid" id="category-recipes">
+                    <!-- Recipe cards will be dynamically loaded here -->
+                    <div class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Abuela's Enchiladas" class="recipe-image">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Abuela's Enchiladas</h3>
+                            <p class="recipe-description">A family recipe passed down through generations, these enchiladas are the perfect comfort food.</p>
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Main Dish</span>
+                                <span class="recipe-tag">Family Favorite</span>
+                            </div>
+                            <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1515516969-d4008cc6241a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sunday Paella" class="recipe-image">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Sunday Paella</h3>
+                            <p class="recipe-description">This vibrant and flavorful paella is perfect for Sunday family gatherings.</p>
+                            <div class="recipe-tags">
+                                <span class="recipe-tag">Main Dish</span>
+                                <span class="recipe-tag">Weekend</span>
+                            </div>
+                            <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- This section shows all categories -->
+            <div class="all-categories" id="all-categories">
+                <div class="categories-container">
+                    <a href="categories.html?category=main-dish" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Main Dishes" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Main Dishes</h3>
+                            <p class="category-count">15 recipes</p>
+                            <p class="category-description">Hearty and satisfying main courses for lunch and dinner.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                    
+                    <a href="categories.html?category=dessert" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Desserts" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Desserts</h3>
+                            <p class="category-count">12 recipes</p>
+                            <p class="category-description">Sweet treats to end your meal on a high note.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                    
+                    <a href="categories.html?category=family-favorite" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Family Favorites" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Family Favorites</h3>
+                            <p class="category-count">10 recipes</p>
+                            <p class="category-description">Beloved recipes that have been passed down through generations.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                    
+                    <a href="categories.html?category=holiday" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1576673442511-7e39b6545c87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Holiday Recipes" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Holiday Recipes</h3>
+                            <p class="category-count">8 recipes</p>
+                            <p class="category-description">Special dishes for celebrations and festive occasions.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                    
+                    <a href="categories.html?category=quick-easy" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Quick & Easy" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Quick & Easy</h3>
+                            <p class="category-count">14 recipes</p>
+                            <p class="category-description">Delicious meals that can be prepared in 30 minutes or less.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                    
+                    <a href="categories.html?category=vegetarian" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vegetarian" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Vegetarian</h3>
+                            <p class="category-count">9 recipes</p>
+                            <p class="category-description">Meat-free dishes that are full of flavor and nutrition.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                    
+                    <a href="categories.html?category=breakfast" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Breakfast" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Breakfast</h3>
+                            <p class="category-count">7 recipes</p>
+                            <p class="category-description">Start your day right with these delicious breakfast recipes.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                    
+                    <a href="categories.html?category=appetizer" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Appetizers" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Appetizers</h3>
+                            <p class="category-count">11 recipes</p>
+                            <p class="category-description">Small bites and starters to kick off your meal.</p>
+                            <span class="category-link">Browse Recipes</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">All Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <div class="newsletter-signup">
+                <h3>Stay Updated</h3>
+                <p>Sign up to receive notifications when new recipes are added!</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+            
+            <p class="copyright">&copy; 2025 Familia, Amigos Y Comida by John Simpson. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script>
+        // Check if a category is selected in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+        
+        if (category) {
+            // Show the active category view
+            document.getElementById('active-category').style.display = 'block';
+            document.getElementById('all-categories').style.display = 'none';
+            
+            // Update the category title based on the selected category
+            const categoryTitle = document.querySelector('.active-category-title');
+            
+            switch(category) {
+                case 'main-dish':
+                    categoryTitle.textContent = 'Main Dishes';
+                    break;
+                case 'dessert':
+                    categoryTitle.textContent = 'Desserts';
+                    break;
+                case 'family-favorite':
+                    categoryTitle.textContent = 'Family Favorites';
+                    break;
+                case 'holiday':
+                    categoryTitle.textContent = 'Holiday Recipes';
+                    break;
+                case 'quick-easy':
+                    categoryTitle.textContent = 'Quick & Easy';
+                    break;
+                case 'vegetarian':
+                    categoryTitle.textContent = 'Vegetarian';
+                    break;
+                case 'breakfast':
+                    categoryTitle.textContent = 'Breakfast';
+                    break;
+                case 'appetizer':
+                    categoryTitle.textContent = 'Appetizers';
+                    break;
+                default:
+                    categoryTitle.textContent = 'Recipes';
+            }
+            
+            // In a real application, you would fetch recipes for the selected category
+            // and dynamically populate the recipe grid
+        }
+    </script>
+</body>
+</html>

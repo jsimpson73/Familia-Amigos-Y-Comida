@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Familia, Amigos Y Comida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Familia, Amigos Y Comida</h1>
+            <p class="site-subtitle">Recipes from the heart, shared with love</p>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                <li><a href="favorites.html">My Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="register.html" id="register-link">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container auth-container">
+            <form class="auth-form" id="register-form">
+                <h2 class="auth-title">Create an Account</h2>
+                
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="newsletter" id="newsletter" checked>
+                        Subscribe to recipe notifications
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" id="terms" required>
+                        I agree to the <a href="terms.html">Terms and Conditions</a>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="form-button">Register</button>
+                </div>
+                
+                <a href="login.html" class="auth-link">Already have an account? Login here</a>
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">All Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <p class="copyright">&copy; 2025 Familia, Amigos Y Comida by John Simpson. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="John Simpson">
+    <title>About | Familia, Amigos Y Comida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .about-content {
+            line-height: 1.8;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        
+        .about-quote {
+            font-family: var(--header-font);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .author-section {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .author-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+        }
+        
+        .author-bio h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .contact-section {
+            margin-top: 40px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Familia, Amigos Y Comida</h1>
+            <p class="site-subtitle">Recipes from the heart, shared with love</p>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                <li><a href="favorites.html">My Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="register.html" id="register-link">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <h2 class="page-title">About Our Cookbook</h2>
+            
+            <section class="about-section">
+                <div class="about-header">
+                    <h3>The Story Behind Familia, Amigos Y Comida</h3>
+                </div>
+                
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Family cooking together" class="about-image">
+                
+                <div class="about-content">
+                    <p>Welcome to Familia, Amigos Y Comida – a celebration of family, friendship, and food. This cookbook project began as a simple collection of family recipes that had been passed down through generations. What started as a personal endeavor to preserve our culinary heritage has grown into a community where food enthusiasts can share their favorite recipes and stories.</p>
+                    
+                    <p>The name "Familia, Amigos Y Comida" (Family, Friends, and Food) reflects our belief that cooking is about more than just preparing meals – it's about creating memories, strengthening bonds, and sharing love through food. Every recipe here has a story, whether it's a grandmother's secret enchilada recipe that's been perfected over decades or a new creation inspired by travels and adventures.</p>
+                    
+                    <div class="about-quote">
+                        "Food is our common ground, a universal experience that brings people together across generations and cultures."
+                    </div>
+                    
+                    <p>Our mission is to create a warm, inviting space where food lovers can discover new recipes, share their culinary creations, and connect with others who share their passion for cooking. We believe that the best recipes are meant to be shared, and we're excited to build a community that celebrates the joy of cooking and eating together.</p>
+                    
+                    <p>Whether you're an experienced chef or just starting your culinary journey, we invite you to explore our collection of recipes, contribute your own favorites, and become part of our growing food community. From family favorites to holiday traditions, quick weeknight meals to elaborate weekend projects, there's something here for everyone who believes in the power of a home-cooked meal.</p>
+                </div>
+                
+                <div class="author-section">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="John Simpson" class="author-image">
+                    
+                    <div class="author-bio">
+                        <h3>About the Author</h3>
+                        <p>John Simpson is a home cook, food enthusiast, and collector of family recipes. His passion for cooking began in his grandmother's kitchen, where he learned that the best meals are made with love and shared with others. After years of collecting recipes from family members, friends, and his own culinary experiments, John decided to create this cookbook website to preserve these treasured recipes and share them with a wider community.</p>
+                        <p>When he's not in the kitchen testing new recipes, John enjoys gardening, traveling to discover new flavors, and hosting dinner parties for friends and family. He believes that cooking is both an art and a way to connect with our cultural heritage, and he's dedicated to keeping traditional recipes alive while also embracing new culinary innovations.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="about-section contact-section">
+                <div class="about-header">
+                    <h3>Contact Us</h3>
+                    <p>Have questions, suggestions, or just want to say hello? We'd love to hear from you!</p>
+                </div>
+                
+                <form class="contact-form form-container">
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Name</label>
+                        <input type="text" id="contact-name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Email</label>
+                        <input type="email" id="contact-email" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-subject" class="form-label">Subject</label>
+                        <input type="text" id="contact-subject" name="subject" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Message</label>
+                        <textarea id="contact-message" name="message" class="form-textarea" rows="6" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="form-button">Send Message</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">All Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <div class="newsletter-signup">
+                <h3>Stay Updated</h3>
+                <p>Sign up to receive notifications when new recipes are added!</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+            
+            <p class="copyright">&copy; 2025 Familia, Amigos Y Comida by John Simpson. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contact form submission
+            const contactForm = document.querySelector('.contact-form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('contact-name').value;
+                    const email = document.getElementById('contact-email').value;
+                    const subject = document.getElementById('contact-subject').value;
+                    const message = document.getElementById('contact-message').value;
+                    
+                    // In a real application, this would send the form data to the server
+                    // For demo purposes, we'll just show a success message
+                    
+                    // Create a success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'success-message';
+                    successMessage.style.backgroundColor = '#4CAF50';
+                    successMessage.style.color = 'white';
+                    successMessage.style.padding = '20px';
+                    successMessage.style.borderRadius = '5px';
+                    successMessage.style.marginTop = '20px';
+                    successMessage.style.textAlign = 'center';
+                    successMessage.innerHTML = `
+                        <h3>Message Sent!</h3>
+                        <p>Thank you for contacting us, ${name}. We'll get back to you as soon as possible.</p>
+                    `;
+                    
+                    // Replace the form with the success message
+                    contactForm.innerHTML = '';
+                    contactForm.appendChild(successMessage);
+                    
+                    // In a real application, you would send this to the server
+                    console.log('Contact form submission:', { name, email, subject, message });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

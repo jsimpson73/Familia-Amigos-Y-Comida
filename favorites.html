@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="John Simpson">
+    <title>My Favorites | Familia, Amigos Y Comida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Familia, Amigos Y Comida</h1>
+            <p class="site-subtitle">Recipes from the heart, shared with love</p>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                <li><a href="favorites.html">My Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="register.html" id="register-link">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <h2 class="page-title">My Favorite Recipes</h2>
+            
+            <!-- Login required message (shown when not logged in) -->
+            <div class="login-message" id="login-required" style="display: none;">
+                <p>You need to <a href="login.html">login</a> or <a href="register.html">register</a> to view your favorite recipes.</p>
+            </div>
+            
+            <!-- No favorites message (shown when logged in but no favorites) -->
+            <div class="no-results" id="no-favorites" style="display: none;">
+                <h3>No Favorite Recipes Yet</h3>
+                <p>You haven't added any recipes to your favorites yet.</p>
+                <p>Browse our <a href="recipes.html">recipe collection</a> and click the heart icon to add recipes to your favorites.</p>
+            </div>
+            
+            <!-- Favorites grid (shown when logged in and has favorites) -->
+            <div class="recipe-grid" id="favorites-grid">
+                <!-- Favorite recipes will be dynamically loaded here -->
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">All Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <div class="newsletter-signup">
+                <h3>Stay Updated</h3>
+                <p>Sign up to receive notifications when new recipes are added!</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+            
+            <p class="copyright">&copy; 2025 Familia, Amigos Y Comida by John Simpson. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script src="js/favorites.js"></script>
+    <!-- Script moved to js/favorites.js -->
+</body>
+</html>

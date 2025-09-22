@@ -1,0 +1,5 @@
+# Protect the admin directory with password authentication
+AuthType Basic
+AuthName "Admin Area - Restricted Access"
+AuthUserFile /workspace/.htpasswd
+Require valid-user

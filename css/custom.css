@@ -1,0 +1,66 @@
+/* Custom CSS for horizontal navbar and favorites */
+
+/* Ensure horizontal navbar */
+.nav-list {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    list-style: none !important;
+}
+
+.nav-list li {
+    display: inline-block !important;
+    margin: 0 15px !important;
+}
+
+/* Favorite button styles */
+.favorite-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ccc;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    outline: none;
+}
+
+.favorite-button.active {
+    color: #FF6347; /* Tomato - warm reddish accent */
+}
+
+.favorite-button:hover {
+    transform: scale(1.2);
+}
+
+.recipe-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.my-favorites-section {
+    margin-bottom: 40px;
+}
+
+.login-message {
+    background-color: #f9f5eb;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-left: 4px solid #CD853F;
+}
+
+/* Fix for mobile view */
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    .nav-list li {
+        margin: 5px 10px !important;
+    }
+}

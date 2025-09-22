@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Recipe | Familia, Amigos Y Comida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Familia, Amigos Y Comida</h1>
+            <p class="site-subtitle">Recipes from the heart, shared with love</p>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                <li><a href="favorites.html">My Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="register.html" id="register-link">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <h2 class="page-title">Submit Your Recipe</h2>
+            
+            <div class="login-required-message" id="login-required" style="display: none;">
+                <p>You need to <a href="login.html">login</a> or <a href="register.html">register</a> to submit a recipe.</p>
+            </div>
+            
+            <div class="form-container" id="recipe-form-container">
+                <form id="recipe-submission-form" class="recipe-form">
+                    <div class="form-group">
+                        <label for="recipe-title" class="form-label">Recipe Title</label>
+                        <input type="text" id="recipe-title" name="title" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-intro" class="form-label">Introduction</label>
+                        <textarea id="recipe-intro" name="introduction" class="form-textarea" placeholder="Share the story behind this recipe or what makes it special..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-image" class="form-label">Recipe Image</label>
+                        <input type="file" id="recipe-image" name="image" accept="image/*" class="form-input">
+                        <small>Please upload a high-quality image of your prepared dish.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prep-time" class="form-label">Preparation Time (minutes)</label>
+                        <input type="number" id="prep-time" name="prep_time" class="form-input" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cook-time" class="form-label">Cooking Time (minutes)</label>
+                        <input type="number" id="cook-time" name="cook_time" class="form-input" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="servings" class="form-label">Servings</label>
+                        <input type="number" id="servings" name="servings" class="form-input" min="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Ingredients</label>
+                        <div id="ingredients-container">
+                            <div class="ingredient-row">
+                                <input type="text" name="ingredients[]" class="form-input" placeholder="e.g., 2 cups flour" required>
+                                <button type="button" class="remove-btn">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-ingredient" class="secondary-button">Add Ingredient</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Instructions</label>
+                        <div id="instructions-container">
+                            <div class="instruction-row">
+                                <textarea name="instructions[]" class="form-textarea" placeholder="Describe this step..." required></textarea>
+                                <button type="button" class="remove-btn">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-instruction" class="secondary-button">Add Step</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Categories</label>
+                        <div class="categories-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="main-dish"> Main Dish
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="side-dish"> Side Dish
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="dessert"> Dessert
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="breakfast"> Breakfast
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="lunch"> Lunch
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="dinner"> Dinner
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="appetizer"> Appetizer
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="snack"> Snack
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="drink"> Drink
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="family-favorite"> Family Favorite
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="holiday"> Holiday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="quick-easy"> Quick & Easy
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="vegetarian"> Vegetarian
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="vegan"> Vegan
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="categories[]" value="gluten-free"> Gluten-Free
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipe-notes" class="form-label">Additional Notes (Optional)</label>
+                        <textarea id="recipe-notes" name="notes" class="form-textarea" placeholder="Any tips, variations, or additional information..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="form-button">Submit Recipe for Review</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="submission-guidelines">
+                <h3>Submission Guidelines</h3>
+                <ul>
+                    <li>All recipes are reviewed by our admin team before being published.</li>
+                    <li>Please provide clear, step-by-step instructions.</li>
+                    <li>High-quality images help showcase your recipe.</li>
+                    <li>Be sure to include all ingredients and their measurements.</li>
+                    <li>You'll receive an email notification when your recipe is approved.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">All Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <p class="copyright">&copy; 2025 Familia, Amigos Y Comida by John Simpson. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script src="js/recipe-submission.js"></script>
+</body>
+</html>

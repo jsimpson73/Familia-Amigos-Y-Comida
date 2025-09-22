@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Recipes | Familia, Amigos Y Comida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .filter-sort {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .filter-group, .sort-group, .search-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-dropdown, .sort-dropdown {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-width: 150px;
+        }
+        
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-width: 200px;
+        }
+        
+        .search-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .pagination-btn {
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-btn:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .pagination-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .no-results h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Familia, Amigos Y Comida</h1>
+            <p class="site-subtitle">Recipes from the heart, shared with love</p>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">All Recipes</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                <li><a href="favorites.html">My Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="register.html" id="register-link">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <h2 class="page-title">All Recipes</h2>
+            
+            <div class="filter-sort">
+                <div class="filter-group">
+                    <label for="filter-category">Category:</label>
+                    <select id="filter-category" class="filter-dropdown">
+                        <option value="all">All Categories</option>
+                        <option value="main-dish">Main Dishes</option>
+                        <option value="dessert">Desserts</option>
+                        <option value="family-favorite">Family Favorites</option>
+                        <option value="holiday">Holiday</option>
+                        <option value="quick-easy">Quick & Easy</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="appetizer">Appetizers</option>
+                    </select>
+                </div>
+                
+                <div class="search-group">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search recipes...">
+                    <button id="search-button" class="search-button">Search</button>
+                </div>
+                
+                <div class="sort-group">
+                    <label for="sort-dropdown">Sort by:</label>
+                    <select id="sort-dropdown" class="sort-dropdown">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="a-z">A-Z</option>
+                        <option value="z-a">Z-A</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="recipe-grid" id="recipe-grid">
+                <!-- Recipe cards will be dynamically loaded here -->
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Abuela's Enchiladas" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Abuela's Enchiladas</h3>
+                        <p class="recipe-description">A family recipe passed down through generations, these enchiladas are the perfect comfort food.</p>
+                        <div class="recipe-tags">
+                            <span class="recipe-tag">Main Dish</span>
+                            <span class="recipe-tag">Family Favorite</span>
+                        </div>
+                        <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Homemade Churros" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Homemade Churros</h3>
+                        <p class="recipe-description">Crispy on the outside, soft on the inside, these churros are perfect for any celebration.</p>
+                        <div class="recipe-tags">
+                            <span class="recipe-tag">Dessert</span>
+                            <span class="recipe-tag">Holiday</span>
+                        </div>
+                        <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1515516969-d4008cc6241a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sunday Paella" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Sunday Paella</h3>
+                        <p class="recipe-description">This vibrant and flavorful paella is perfect for Sunday family gatherings.</p>
+                        <div class="recipe-tags">
+                            <span class="recipe-tag">Main Dish</span>
+                            <span class="recipe-tag">Weekend</span>
+                        </div>
+                        <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tres Leches Cake" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Tres Leches Cake</h3>
+                        <p class="recipe-description">A light and airy sponge cake soaked in three types of milk, topped with whipped cream.</p>
+                        <div class="recipe-tags">
+                            <span class="recipe-tag">Dessert</span>
+                            <span class="recipe-tag">Family Favorite</span>
+                        </div>
+                        <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Homemade Salsa" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Homemade Salsa</h3>
+                        <p class="recipe-description">Fresh and vibrant salsa made with ripe tomatoes, onions, cilantro, and a hint of lime.</p>
+                        <div class="recipe-tags">
+                            <span class="recipe-tag">Appetizer</span>
+                            <span class="recipe-tag">Quick & Easy</span>
+                        </div>
+                        <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                    </div>
+                </div>
+                
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Breakfast Tacos" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Breakfast Tacos</h3>
+                        <p class="recipe-description">Start your day with these delicious breakfast tacos filled with eggs, cheese, and your favorite toppings.</p>
+                        <div class="recipe-tags">
+                            <span class="recipe-tag">Breakfast</span>
+                            <span class="recipe-tag">Quick & Easy</span>
+                        </div>
+                        <a href="recipe-detail.html" class="recipe-link">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- No results message (hidden by default) -->
+            <div class="no-results" id="no-results" style="display: none;">
+                <h3>No Recipes Found</h3>
+                <p>Try adjusting your search criteria or browse all recipes.</p>
+                <button class="form-button" id="reset-filters">Reset Filters</button>
+            </div>
+            
+            <div class="pagination">
+                <div class="pagination-btn">Previous</div>
+                <div class="pagination-btn active">1</div>
+                <div class="pagination-btn">2</div>
+                <div class="pagination-btn">3</div>
+                <div class="pagination-btn">Next</div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">All Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <div class="newsletter-signup">
+                <h3>Stay Updated</h3>
+                <p>Sign up to receive notifications when new recipes are added!</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+            
+            <p class="copyright">&copy; 2025 Familia, Amigos Y Comida by John Simpson. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterCategory = document.getElementById('filter-category');
+            const sortDropdown = document.getElementById('sort-dropdown');
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const recipeGrid = document.getElementById('recipe-grid');
+            const noResults = document.getElementById('no-results');
+            const resetFilters = document.getElementById('reset-filters');
+            
+            // Filter recipes based on current filters
+            function filterRecipes() {
+                const category = filterCategory.value;
+                const sortBy = sortDropdown.value;
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                const recipeCards = recipeGrid.querySelectorAll('.recipe-card');
+                let visibleCount = 0;
+                
+                recipeCards.forEach(card => {
+                    const title = card.querySelector('.recipe-title').textContent.toLowerCase();
+                    const description = card.querySelector('.recipe-description').textContent.toLowerCase();
+                    const tags = card.querySelector('.recipe-tags').textContent.toLowerCase();
+                    
+                    let categoryMatch = category === 'all' || tags.includes(category);
+                    let searchMatch = !searchTerm || title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm);
+                    
+                    if (categoryMatch && searchMatch) {
+                        card.style.display = '';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide no results message
+                if (visibleCount === 0) {
+                    recipeGrid.style.display = 'none';
+                    noResults.style.display = 'block';
+                } else {
+                    recipeGrid.style.display = 'grid';
+                    noResults.style.display = 'none';
+                }
+                
+                // Sort visible recipes
+                sortRecipes(sortBy);
+            }
+            
+            // Sort recipes based on selected option
+            function sortRecipes(sortBy) {
+                const recipeCards = Array.from(recipeGrid.querySelectorAll('.recipe-card'));
+                const visibleCards = recipeCards.filter(card => card.style.display !== 'none');
+                
+                visibleCards.sort((a, b) => {
+                    const titleA = a.querySelector('.recipe-title').textContent;
+                    const titleB = b.querySelector('.recipe-title').textContent;
+                    
+                    switch(sortBy) {
+                        case 'a-z':
+                            return titleA.localeCompare(titleB);
+                        case 'z-a':
+                            return titleB.localeCompare(titleA);
+                        case 'newest':
+                            // In a real application, this would sort by date
+                            // For demo purposes, we'll just use the current order
+                            return -1;
+                        case 'oldest':
+                            // In a real application, this would sort by date
+                            // For demo purposes, we'll just reverse the current order
+                            return 1;
+                        default:
+                            return 0;
+                    }
+                });
+                
+                // Reorder the cards in the DOM
+                visibleCards.forEach(card => {
+                    recipeGrid.appendChild(card);
+                });
+            }
+            
+            // Event listeners
+            filterCategory.addEventListener('change', filterRecipes);
+            sortDropdown.addEventListener('change', filterRecipes);
+            searchButton.addEventListener('click', filterRecipes);
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    filterRecipes();
+                }
+            });
+            
+            resetFilters.addEventListener('click', function() {
+                filterCategory.value = 'all';
+                sortDropdown.value = 'newest';
+                searchInput.value = '';
+                filterRecipes();
+            });
+            
+            // Pagination (for demo purposes)
+            const paginationButtons = document.querySelectorAll('.pagination-btn');
+            paginationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // In a real application, this would load different pages of recipes
+                    // For demo purposes, we'll just update the active button
+                    
+                    if (this.textContent !== 'Previous' && this.textContent !== 'Next') {
+                        document.querySelectorAll('.pagination-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="js/recipes.js"></script>
+</body>
+</html>
